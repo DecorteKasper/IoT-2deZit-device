@@ -7,11 +7,11 @@ using System.Text;
 
 string connectionString = "HostName=kasperiothub.azure-devices.net;DeviceId=kasperdecorte;SharedAccessKey=C3FVCWOCzgQOvmgDGphMw9MP571ulom+CUPQFcpsEtM=";
 var deviceClient = DeviceClient.CreateFromConnectionString(connectionString);
-DesiredProperties desiredProperties = new DesiredProperties();
+// DesiredProperties desiredProperties = new DesiredProperties();
 
-await deviceClient.SetDesiredPropertyUpdateCallbackAsync(OnDesiredPropertyChanged, null);
-await deviceClient.OpenAsync();
-await GetTwinConfigInfo();
+// await deviceClient.SetDesiredPropertyUpdateCallbackAsync(OnDesiredPropertyChanged, null);
+// await deviceClient.OpenAsync();
+// await GetTwinConfigInfo();
 
 
 
@@ -89,25 +89,25 @@ async Task EventOut()
 
 
 
-#region Boot
+// #region Boot
 
-async Task GetTwinConfigInfo()
-{
-    var twin = await deviceClient.GetTwinAsync();
-    var twinCollection = twin.Properties.Desired;
-    var twinJson = twinCollection.ToJson();
-    desiredProperties = JsonConvert.DeserializeObject<DesiredProperties>(twinJson);
-}
+// async Task GetTwinConfigInfo()
+// {
+//     var twin = await deviceClient.GetTwinAsync();
+//     var twinCollection = twin.Properties.Desired;
+//     var twinJson = twinCollection.ToJson();
+//     desiredProperties = JsonConvert.DeserializeObject<DesiredProperties>(twinJson);
+// }
 
-#endregion
+// #endregion
 
-#region Update desired properties
+// #region Update desired properties
 
-async Task OnDesiredPropertyChanged(TwinCollection props, object userContext)
-{
-    var twinJson = props.ToJson();
-    desiredProperties = JsonConvert.DeserializeObject<DesiredProperties>(twinJson);
-    Console.WriteLine($"Received twin update with value: {twinJson}");
-}
+// async Task OnDesiredPropertyChanged(TwinCollection props, object userContext)
+// {
+//     var twinJson = props.ToJson();
+//     desiredProperties = JsonConvert.DeserializeObject<DesiredProperties>(twinJson);
+//     Console.WriteLine($"Received twin update with value: {twinJson}");
+// }
 
-#endregion
+// #endregion
